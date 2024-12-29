@@ -13,4 +13,9 @@ seeing if your problem is a good fit for a general algorithmic technique, e.g., 
 
 - [Python collections](https://docs.python.org/3/library/collections.html) or in [intermediate python](https://book.pythontips.com/en/latest/collections.html)
 
+#### chapter 1. Primitive Types
+
+- The usage of `^` comes to the **parity**. `XOR` in python.
+- The usage of **caching** in comutative and associative operations
+- **remember the tricks of `x & (x - 1)` vs `x & ~(x - 1)`**
 - 
