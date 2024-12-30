@@ -56,6 +56,3 @@ def bitwise_power2(x, y):
             result = multiply(result, x)
         x, power = multiply(x, x), power >> 1  # the latter means (/2)
     return result
-
-print(bitwise_power(0b1101, 2))
-print(bitwise_power2(0b1101, 2))
