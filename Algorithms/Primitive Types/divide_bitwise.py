@@ -2,6 +2,7 @@
     Given two positive integers, compute their quotient, using only the addition, subtraction, and
     shifting operators.
 '''
+# time complexity: O(n)
 
 def divide_bitwise(x, y):
     result, power = 0, 32      # imagine the number is 64-bit length
