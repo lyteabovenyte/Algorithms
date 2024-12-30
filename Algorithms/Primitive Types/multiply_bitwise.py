@@ -15,7 +15,10 @@ def multiply_bitwise(x, y):
             ak, bk = (a & k), (b & k)
             carryout = (ak & bk) | (ak & carryin) | (bk & carryin)
             running_sum |= ak ^ bk ^ carryin
-            carryin, k, temp_a, temp_b = (carryout << 1, k << 1, temp_a >> 1, temp_b >> 1)
+            carryin, k, temp_a, temp_b = ((carryout << 1, 
+                                           k << 1, 
+                                           temp_a >> 1, 
+                                           temp_b >> 1))
         return running_sum | carryin
     
     running_sum = 0 
