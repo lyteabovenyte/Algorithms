@@ -18,4 +18,15 @@ seeing if your problem is a good fit for a general algorithmic technique, e.g., 
 - The usage of `^` comes to the **parity**. `XOR` in python.
 - The usage of **caching** in comutative and associative operations
 - **remember the tricks of `x & (x - 1)` vs `x & ~(x - 1)`**
+- trick for sorting a list of namedtuple based on a specific key:
+```python
+from operator import attrgetter
+import collections
+
+Point = collections.namedtuple('Point', ('x', 'y'))
+lst = [P1, P2, P3, P4]
+# sorting based on y
+sorted_lst = sorted(lst, key=attrgetter('y'))
+```
+
 - 
