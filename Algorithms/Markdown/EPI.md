@@ -29,4 +29,45 @@ lst = [P1, P2, P3, P4]
 sorted_lst = sorted(lst, key=attrgetter('y'))
 ```
 
+#### chapter 5. Arrays
+###### books bootcamp on array notes:
+  - when working with arrays, we should take advantage of the fact that we can operate efficiently on both ends. (for **two-pointers** solutions)
+
+  - Array problems often have simple brute-force solutions that use O(n) *space*, but there are subtler solutions that use the array itself to reduce *space* complexity to O(1).
+
+  - Filling an array from the front is slow, so see if it's possible to **write values from the back**
+
+  - Instead of deleting an entry (which requires moving all entries to its left), consider **overwriting** it.
+
+  - When dealing with integers encoded by an array consider processing the digits from the *back* of the array. Altemately, **reverse the array so the least-significant digit is the first entry**.
+
+  - Be comfortable with writing code that operates on **subarrays**
+
+  - Don't worry about preserving the integrity of the array (sortedness, keeping equal entries together, etc.) **until it is time to return**.
+
+  - an array can serve as a good data structure when you know the distribution of the elements in advance. For example, a Boolean array of length W is a good choice for representing a subset
+  of {0, 1, ... ,W - 1}. (When using a Boolean array to represent a subset of {1, 2, ..., n} allocate anarray of size n+1 to simplify indexing.)
+  
+  - when operating on 2D arrays, use **parallel logic** for rows and for columns
+
+- The difference between **shallow** and **deep** copying is only relevant for compound objects (objects that contain other objects, like lists or class instances):
+  - A shallow copy constructs a new compound object and then (to the extent possible) inserts *references* into it to the objects found in the original.
+  - A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+
+- Key methods for list include min(A), max(A), binary search for sorted lists
+(bisect.bisect(A,6), bisect.bisect_left(A,6), and bisect.bisect_right(A,6)),
+A.reverseO (in-place), reversed(A) (retums an iterator), A.sort()(in-place), sorted(A)
+(returns a copy), del A[i] (deletes the i-th element), and del A[i: j] (removes the slice).
+
+- [bisect] module: This module provides support for maintaining a list in *sorted* order without having to sort the list after each *insertion*. For long lists of items with expensive comparison operations, this can be an improvement over linear searches or frequent resorting. The module is called bisect because it uses a basic bisection algorithm to do its work. Unlike other bisection tools that search for a specific value, the functions in this module are designed to **locate an insertion point**.
+
+- cool thing that can be done using slicing:
+```python
+l = [1, 2, 3, 4, 5, 6]
+l[:-1] # removes the last element
+l[k:] + l[:k] # rotate l by k to the left
+l[::-1] # reverse
+l2 = l[:] # shallow copy
+```
+
 - 
