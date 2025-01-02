@@ -70,4 +70,13 @@ l[::-1] # reverse
 l2 = l[:] # shallow copy
 ```
 
+- **partitioning strategy** based on a sepecific pivot.
+
+- getting the count of every distinct value in the list:
+```python
+from collections import Counter
+l = # some list
+c_m = Counter(l)
+```
+
 - 
