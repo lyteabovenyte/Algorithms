@@ -79,4 +79,12 @@ l = # some list
 c_m = Counter(l)
 ```
 
+- cool stuff with binary and being variable length:
+```python
+m = "100110101"
+n = m.zfill(15) # changin m to be 15 length size, filling the leading zeros.
+# or
+n2 = '{:015b}'.format(11) # changing an integer to be in a specific length.
+```
+
 - 
