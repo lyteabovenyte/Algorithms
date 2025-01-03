@@ -3,75 +3,23 @@
     [2, 3], [1, 2] --> return [2, 8, 6]
 '''
 
-def multiply_arrays(s, t):
-    # defining helper function to add
-    def add_array(a, b):
-        running_sum = 0
-        result = []
-        j = max(len(a), len(b)) - 1
-        while j >= 0:
-            w = a[j] + b[j] + running_sum
-            running_sum = 0
-            if w > 9:
-                running_sum += 1
-                w = w % 10
-            result.insert(j, w)
-            j -= 1
-        if running_sum != 0:
-            result.insert(0, 1)
-        return result
-    
-    def multiply(l, b): # l --> list, b --> number
-        running_sum = 0
-        result = []
-        j = len(l) - 1
-        while j >= 0:
-            w = l[j] * b + running_sum
-            running_sum = 0
-            if w > 9:
-                running_sum += 1
-                w = w % 10
-            result.insert(j, w)
-            j -= 1
-        if running_sum != 0:
-            result.insert(0, 1)
-        return result
+def multiply(s, t):
+    sign = -1 if (s[0] < 0) ^ (t[0] < 0) else 1
+    s[0], t[0] = abs(s[0]), abs(t[0])
 
-    final = 0
-    i = 0
-    for k in reversed(range(len(t) - 1)):
-        res = multiply(s, t[k])
-        res.append(0 * i)
-        i += 1
-        final = add_array([final], res)
+    # the multiplication array, has at most len(s) + len(t) elements
+    result = [0] * (len(s) + len(t))
+    for i in reversed(range(len(s))):
+        for j in reversed(range(len(t))):
+            result[i + j + 1] += s[i] * t[j]
+            result[i + j] += result[i + j + 1] // 10
+            result[i + j + 1] %= 10
 
-    return final
+    # removing the leading zeros
+    result = result[next((i for i, x in enumerate(result) if x != 0), len(result)):] or [0]
+    return [sign * result[0]] + result[1:]
 
 
-def add_array(a, b):
-        running_sum = 0
-        result = []
-        j = max(len(a), len(b)) - 1
-        while j >= 0:
-            w = a[j] + b[j] + running_sum
-            running_sum = 0
-            if w > 9:
-                running_sum += 1
-                w = w % 10
-            result.insert(j, w)
-            j -= 1
-        if running_sum != 0:
-            result.insert(0, 1)
-        return result
+print(multiply([-9, 9], [2, 1]))
 
-# we can use * to multiply.
-def final_try(s, t):
-    result = []
-    i = 0    # s and t are two arrays, denoting a specific number.
-    for j in reversed(range(len(t))):
-        w = s * t[j] * (10 * i)
-        result = add_array(result, w)
-
-
-print(multiply_arrays([9, 9], [9, 9]))
             
