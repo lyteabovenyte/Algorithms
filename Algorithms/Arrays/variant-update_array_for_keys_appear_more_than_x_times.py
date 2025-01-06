@@ -10,17 +10,21 @@ def min_2_and_m(arr, m):
         if arr[j] != arr[i]:
             arr[k] = arr[i]
             i, j, k = i + 1, j + 1, k + 1
-        if arr[j] == arr[i]:
+        if arr[j] == arr[i] and j < len(arr):
             x = 1
             while arr[j] == arr[i] and j < len(arr):
                 i, j = i + 1, j + 1
                 x += 1
-            w = min(m, x)
-            arr[k: w] = [arr[i]] * (w - k - 1)
-            k = k + w
-            i, j = i + 1, j + 1
+            w = min(m, 2)
+            while w > 0:
+                arr[k] = arr[i]
+                k += 1
+                w -= 1
+            # i, j = i + 1, j + 1
+    arr.append(arr[j])
+    arr[k:] = [0] * (len(arr) - k)
     return arr
 
 
-print(min_2_and_m([2, 3, 5, 5, 5, 5, 7, 11, 11, 11, 13], 2))
+print(min_2_and_m([2, 3, 5, 5, 5, 5, 7, 11, 11, 11, 11], 2))
 
