@@ -29,6 +29,28 @@ def my_sol(perm):
 
     perm[:] = perm[:k + 1] + sorted(perm[k + 1:])
     return perm
+
+def elegant_next_permutation(perm):
+    inversion_point = len(perm) - 2
+    while (inversion_point >= 0 and
+           perm[inversion_point] >= perm[inversion_point + 1]):
+        inversion_point -= 1
+        if inversion_point == -1:
+            return []
+        
+    # since elements after inversion_point are in decreasing order
+    # we can iterate from right to left and the first element
+    # which is greater than inversion_point's element
+    # is what we want to swap
+    for i in reversed(range(len(perm))):
+        if perm[i] > perm[inversion_point]:
+            perm[i], perm[inversion_point] = perm[inversion_point], perm[i]
+            break
+    
+    perm[inversion_point + 1:] = reversed(perm[inversion_point + 1:])
+    return perm
+
         
 print(my_sol([2, 3, 1]))
+print(elegant_next_permutation([2, 3, 1]))
 
