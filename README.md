@@ -1,6 +1,6 @@
-# Python Algorithms
+# Algorithms and Data Structures
 
-#### problem sets from:
-+ _[leetcode](https://leetcode.com)_ ( including 75 blind )
-+ _[codeforces](https://codeforces.com)_ + some DIV problems
-+ more advance algorithms including C+ level problems from codeforces.
+##### noticable algorithms:
+- [X] generating **Uniformed random** permutation and subsets for feature roll-out to users.
+- [X] generating **NONUniformed random** request to servers to test inter-arrival times on request distribution.
+- [ ] 
