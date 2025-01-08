@@ -11,11 +11,17 @@ to A should be performed in one pass, and no additional storage may be allocated
 - [ ] Given an array of stock prices, compute the max profit made by buying and selling at most twice. note that the second by must be after the first sell. variant(p. 48)
 solve it in O(n) time and O(1) space.
 
-- [ ] [UNSOLVED] Given an array A and a permutation P, Apply P to A.
+- [ ] Given an array A and a permutation P, Apply P to A.
 p = [2, 0, 1, 3] --> move index 0 to index 2, move index 1 to index 0,
 move index 2 to index 1, move index 3 to index 3 (uncahnged).
 
 - [ ] Given an array A of integers representing a permutation, update A to represent the inverse permutation using only constant additional storage
 
+
+- [ ] Compute the Kth permutation under dictionary ordering, starting from the identity permutation (which is the first permutation in dictionary ordering)
+
+- [ ] Given a permutation p, return the permutaiton corresponding to the previous permutation of p under dictionary ordering.
+
+- [ ] return the majority element without using HashMap. majority is the element with occurence more than len(array) // 2 -it is guaranteed we have one majority element. **150Leetcode**
 
 - [ ] 
