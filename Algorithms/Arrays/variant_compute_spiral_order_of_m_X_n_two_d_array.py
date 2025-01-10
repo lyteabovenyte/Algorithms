@@ -10,11 +10,12 @@ def spiral_order_of_matrix(m, n):
         result[i] = (x, y)
         x_next, y_next = x + shift[direction][0], y + shift[direction][1]
         if (x_next not in range(m)
-            or y_next not in range(n)):
+            or y_next not in range(n)
+            or (x_next,y_next) in result):
             direction = (direction + 1) & 3
             x_next, y_next = x + shift[direction][0], y + shift[direction][1]
         x, y = x_next, y_next
     return result
 
 
-print(spiral_order_of_matrix(3, 4))
+print(spiral_order_of_matrix(5, 5))
