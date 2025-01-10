@@ -24,4 +24,8 @@ move index 2 to index 1, move index 3 to index 3 (uncahnged).
 
 - [ ] return the majority element without using HashMap. majority is the element with occurence more than len(array) // 2 -it is guaranteed we have one majority element. **150Leetcode**
 
-- [ ] 
+- [ ] Given an n X n 2D array, return the elements in the spiral ordering.
+
+- [ ] Write a function that takes an n X n 2D array, and rotate the array by 90 degrees clockwise.
+
+- [ ]
