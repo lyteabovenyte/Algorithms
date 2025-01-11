@@ -93,4 +93,10 @@ n2 = '{:015b}'.format(11) # changing an integer to be in a specific length.
 
 - `result = [[1] * n for i in range(n)]` is correct. `n * [[1] * n]` is a trap.
 
+#### chapter 6. String
+
+- important concepts about strings which differentiate them from arrays: comparison, joining, splitting, searching for substrings, replacing one string by another, parsing
+
+- advanced string processing algorithms often use hash tables and dynamic programming
+
 - 
