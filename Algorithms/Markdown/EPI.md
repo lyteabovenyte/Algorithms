@@ -87,4 +87,10 @@ n = m.zfill(15) # changin m to be 15 length size, filling the leading zeros.
 n2 = '{:015b}'.format(11) # changing an integer to be in a specific length.
 ```
 
+- the ith entry in nth row, in pascal triangle is the P(n, r). in fact we can use the pascal triangle to compute P(n ,r)
+
+- note the ~ operator which is the corresponding index in an array from the left.
+
+- `result = [[1] * n for i in range(n)]` is correct. `n * [[1] * n]` is a trap.
+
 - 
