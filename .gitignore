@@ -7,13 +7,6 @@ __pycache__/
 # C extensions
 *.so
 
-.idea
-/.idea
-/.idea
-.DS_Store
-.Ds_Store
-.*Store
-
 # Distribution / packaging
 .Python
 build/
@@ -182,3 +175,17 @@ pyrightconfig.json
 node_modules
 package-lock.json
 package.json
+
+
+.idea
+/.idea
+/.idea
+.DS_Store
+.Ds_Store
+.*Store
+/Algorithms/.idea/
+*/.idea/
+*/.idea/*
+/.DS_Store
+*/.DS_Store/*
+*.Ds_Store*
