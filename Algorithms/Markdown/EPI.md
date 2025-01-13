@@ -135,12 +135,9 @@ class Array:
         self.memory = array_data_type()
         self.index = 0
 
-        for i in range(size): 
-            self.memory[i] = None
+        for i, ele in enumerate(self.arr):
+            self.memory[i] = ele
 
-    # helper method to be able to iterate through the array.
-    # so you need to call the __next__() method on the generator
-    # not the actual instance
     def __iter__(self):
         return self
     
@@ -155,17 +152,17 @@ class Array:
     
     # indexing into array
     def __getitem__(self, idx):
-        return self.arr[idx]
+        return self.memory[idx]
     
     # changing values by their index
     def __setitem__(self, idx, val):
-        self.arr[idx] = val
+        self.memory[idx] = val
 
-    # length returns the size of the array   
+    # size returns the size of the array   
     def size(self):
         return self.size
     
-    # return length of the populated chunks of array
+    # length returns the length of the populated chunks of array
     def length(self):
         return len(self.arr)
 ```
