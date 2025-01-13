@@ -4,4 +4,4 @@
 - [X] generating **Uniformed random** permutation and subsets for feature roll-out to users.
 - [X] generating **NONUniformed random** request to servers to test inter-arrival times on request distribution.
 - [X] **Spiral_Ordering** in N dimensional arrays with pure python and processing the arrays in *shells* by controling the direction plus multiple exporation on 2D arrays such as rotation and layer by layer exploration and pascal's triangle
-- [X] implemented CStyle arrays (`ctypes`) and **Custom Array Class with preallocated memory** with handy sorts of **magic methods**. [the file](Algorithms/String/merge_sorted_arrays.py)
+- [X] implemented [CStyle arrays]((Algorithms/String/merge_sorted_arrays.py)) (`ctypes`) and **Custom Array Class with preallocated memory** with handy sorts of **magic methods**.
