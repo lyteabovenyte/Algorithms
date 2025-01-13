@@ -16,9 +16,6 @@ class Array:
         for i, ele in enumerate(self.arr):
             self.memory[i] = ele
 
-    # helper method to be able to iterate through the array.
-    # so you need to call the __next__() method on the generator
-    # not the actual instance
     def __iter__(self):
         return self
     
@@ -39,11 +36,11 @@ class Array:
     def __setitem__(self, idx, val):
         self.memory[idx] = val
 
-    # length returns the size of the array   
+    # size returns the size of the array   
     def size(self):
         return self.size
     
-    # return length of the populated chunks of array
+    # length returns the length of the populated chunks of array
     def length(self):
         return len(self.arr)
     
