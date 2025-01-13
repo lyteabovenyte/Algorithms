@@ -99,4 +99,75 @@ n2 = '{:015b}'.format(11) # changing an integer to be in a specific length.
 
 - advanced string processing algorithms often use hash tables and dynamic programming
 
+- strings are immutable, so concatenating a string into another string implies creating new one and then changing the original one with the new one
+
+- alternative to immutable strings --> e.g `list` in python
+
+- updating a mutable strings from the front is slow, so consider approach to do so and **write the values from the back**
+
+- 
+```python
+chr(ord('0') + some_int) # convert some_int to the corresponding string of that int
+```
+
+- [functools.reduce vs itertools.accumulate](https://realpython.com/python-reduce-function/)
+
+- The idea behind Python’s `reduce()` is to take an existing function, apply it cumulatively to all the items in an iterable, and generate a single final value. In general, Python’s reduce() is handy for processing iterables without writing explicit for loops. Python’s reduce() also accepts a third and optional argument called `initializer` that provides a **seed** value to the computation or reduction.
+
+- **CStyle arrays** -contiguous preallocated blocks of memory. how can we create on?
+```python
+import ctypes
+array_type = ctypes.py_objects * 3 # define the size of the array.
+array = array_type() # creating an array of size 3 which is NULL at first
+# now we have an array of size 3 which is NULL.
+```
+
+- just a self implemented Array which has room for further insertions:
+```python
+import ctypes
+from typing import List
+
+class Array:
+    def __init__(self, arr: List, size):
+        array_data_type = ctypes.py_object * size
+        self.size = size
+        self.arr = arr
+        self.memory = array_data_type()
+        self.index = 0
+
+        for i in range(size): 
+            self.memory[i] = None
+
+    # helper method to be able to iterate through the array.
+    # so you need to call the __next__() method on the generator
+    # not the actual instance
+    def __iter__(self):
+        return self
+    
+    def __next__(self):
+        if self.index >= len(self.arr) and self.index < self.size:
+            return None
+        elif self.index >= self.size:
+            raise StopIteration
+        value = self.arr[self.index]
+        self.index += 1
+        return value
+    
+    # indexing into array
+    def __getitem__(self, idx):
+        return self.arr[idx]
+    
+    # changing values by their index
+    def __setitem__(self, idx, val):
+        self.arr[idx] = val
+
+    # length returns the size of the array   
+    def size(self):
+        return self.size
+    
+    # return length of the populated chunks of array
+    def length(self):
+        return len(self.arr)
+```
+
 - 
