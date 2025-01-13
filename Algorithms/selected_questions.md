@@ -28,4 +28,11 @@ move index 2 to index 1, move index 3 to index 3 (uncahnged).
 
 - [ ] Write a function that takes an n X n 2D array, and rotate the array by 90 degrees clockwise.
 
-- [ ]
+- [ ] convert base function.
+
+- [ ] spreadsheet columns to the corresponding integer. with 'A' corresponding to 0. (Strings/spreadsheet_encoding.py)
+
+- [ ] Given an array of characters, the character can be digits, letters, blanks and punctuation,
+return the telex_encoding of the array. (punctuations are spelled out) *(72-epi)*
+
+- [ ] 
