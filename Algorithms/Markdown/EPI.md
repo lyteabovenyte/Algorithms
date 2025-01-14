@@ -167,4 +167,74 @@ class Array:
         return len(self.arr)
 ```
 
-- 
+- it's good to have a grasp on `functools.reduce` source function:
+```python
+def reduce(function, iterable, initializer=None):
+    it = iter(iterable)
+    if initializer is None:
+        value = next(it)
+    else:
+        value = initializer
+    for element in it:
+        value = function(value, element)
+    return value
+```
+- `x.isalnum()` used to detect alphanumeric characters.
+
+- difference between `find()` and `index()`:
+```python
+s = "some test string"
+s.find('-1 if not found') # returns the index, but return -1 if not found
+s.index('ValueError if not found') # returns the index, but raises ValueError if not found
+```
+
+- `__contains__` magic method.
+```python
+l = ["amir", "loves", "fasting"]
+for ele in l:
+    if ele.__contains__("fast"):
+        print("fast is present")
+```
+
+- `itertools.product` can save us from nested loops:
+```python
+class product(builtins.object)
+  product(*iterables, repeat=1)
+```
+- Cartesian product of input iterables.  Equivalent to nested for-loops.
+For example, product(A, B) returns the same as:  ((x,y) for x in A for y in B).
+
+```python 
+'''
+  The leftmost iterators are in the outermost for-loop, so the output tuples
+  cycle in a manner similar to an odometer (with the rightmost element changing
+  on every iteration).
+
+  To compute the product of an iterable with itself, specify the number
+  of repetitions with the optional repeat keyword argument. For example,
+  product(A, repeat=4) means the same as product(A, A, A, A).
+
+  product('ab', range(3)) --> ('a',0) ('a',1) ('a',2) ('b',0) ('b',1) ('b',2)
+  product((0,1), (0,1), (0,1)) --> (0,0,0) (0,0,1) (0,1,0) (0,1,1) (1,0,0) ...
+
+  Methods defined here:
+  '''
+
+  __getattribute__(self, name, /)
+      Return getattr(self, name).
+ 
+  __iter__(self, /)
+      Implement iter(self).
+
+  __next__(self, /)
+      Implement next(self).
+
+  __reduce__(self, /)
+      Return state information for pickling.
+
+  __setstate__(self, object, /)
+      Set state information for unpickling.
+
+  __sizeof__(self, /)
+      Returns size in memory, in bytes
+```
