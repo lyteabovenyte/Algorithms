@@ -21,8 +21,3 @@ def variant_spreadsheet(d):
 
 
 print(variant_spreadsheet(27))
-    
-
-
-
-    
