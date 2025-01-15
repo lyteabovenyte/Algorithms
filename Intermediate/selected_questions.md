@@ -35,4 +35,6 @@ move index 2 to index 1, move index 3 to index 3 (uncahnged).
 - [ ] Given an array of characters, the character can be digits, letters, blanks and punctuation,
 return the telex_encoding of the array. (punctuations are spelled out) *(72-epi)*
 
+- [ ] the step-by-step recursive approach of mnemonic phone numbers. [/Intermediat/String/mnemonic_phone_number.py](answer)
+
 - [ ] 
