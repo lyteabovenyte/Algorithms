@@ -238,3 +238,23 @@ For example, product(A, B) returns the same as:  ((x,y) for x in A for y in B).
   __sizeof__(self, /)
       Returns size in memory, in bytes
 ```
+
+- another cool usage of `itertools` package.
+```python
+import itertools
+
+itertools.product(*(`some generator that can be unpacked for the cartesian product`))
+```
+
+- the power of `itertools`. [../String/look_and_say.py](source algo)
+```python
+import itertools
+s = '1'
+
+for _ in range(n):
+    s = ''.join(
+        str(len(list(group))) + key for key, group in itertools.groupby(s)
+    )
+```
+
+- 
