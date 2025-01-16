@@ -30,6 +30,8 @@ def look_and_say(n):
 print(look_and_say(4))
         
 
+# the requirements of being valid is to be non-increasing! for below algorithms
+
 # trying to improve
 def look_and_say2(n):
     def next_number(s):
