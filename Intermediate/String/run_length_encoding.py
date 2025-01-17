@@ -8,7 +8,6 @@ def run_length_encoding(s):
     count = 0
 
     for ele in s:
-
         if ele == prev:
             count += 1
         else:
@@ -20,5 +19,15 @@ def run_length_encoding(s):
     result.append(str(count) + prev)
     return "".join(result[1:])
 
+def another(s):
+    result, count = [], 1
+    for i in range(1, len(s) + 1):
+        if i == len(s) or (s[i] != s[i - 1]):
+            result.append(str(count) + s[i - 1])
+            count = 1
+        else:
+            count += 1
+    return "".join(result)
 
-print(run_length_encoding("aaaabcca"))
+print(run_length_encoding("aaaaaaaaaaaaaaaaabcca"))
+print(another("aaabcca"))
