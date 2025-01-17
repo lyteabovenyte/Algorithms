@@ -257,4 +257,41 @@ for _ in range(n):
     )
 ```
 
+- consider the usage of `collections.OrderedDict` when the traversal and order is important in a dictionary.
+```python
+# as an example
+roman = OrderedDict()
+    roman[1000] = "M"
+    roman[900] = "CM"
+    roman[500] = "D"
+    roman[400] = "CD"
+    roman[100] = "C"
+    roman[90] = "XC"
+    roman[50] = "L"
+    roman[40] = "XL"
+    roman[10] = "X"
+    roman[9] = "IX"
+    roman[5] = "V"
+    roman[4] = "IV"
+    roman[1] = "I"
+```
+
+- notice the usage of `itertools.product` instead of nested for loops, here the exact source from [python docs](https://docs.python.org/3/library/itertools.html#itertools.product)
+```python
+def product(*iterables, repeat=1):
+    # product('ABCD', 'xy') → Ax Ay Bx By Cx Cy Dx Dy
+    # product(range(2), repeat=3) → 000 001 010 011 100 101 110 111
+
+    if repeat < 0:
+        raise ValueError('repeat argument cannot be negative')
+    pools = [tuple(pool) for pool in iterables] * repeat
+
+    result = [[]]
+    for pool in pools:
+        result = [x+[y] for x in result for y in pool]
+
+    for prod in result:
+        yield tuple(prod)
+```
+
 - 
