@@ -37,4 +37,8 @@ return the telex_encoding of the array. (punctuations are spelled out) *(72-epi)
 
 - [ ] the step-by-step recursive approach of mnemonic phone numbers. [/Intermediat/String/mnemonic_phone_number.py](answer)
 
+- [ ] Given a decimal string which denotes ip addresses and an integer k which denotes the number
+of periods in ip addresses, imagine the string's length in unbounded,
+return all the possible valid IP addresses with k periods in between.
+
 - [ ] 
