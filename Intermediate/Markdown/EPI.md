@@ -294,4 +294,11 @@ def product(*iterables, repeat=1):
         yield tuple(prod)
 ```
 
+
+#### chapter 7. Linked Lists
+
+- consider using a **dummy head** (sometimes refered to as sentinel) to avoid having to check for empty lists. this simplifies code and makes bugs less likely.
+
+- algorithms operating on singly linked list often benefit from **two iterators**, one ahead of the other or one advancing quicker than the other.
+
 - 
