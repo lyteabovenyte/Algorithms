@@ -9,7 +9,6 @@ class LinkedList:
     
     def __init__(self):
         self.head = None
-        
     
     def is_empty(self):
         return self.head is None
@@ -34,7 +33,6 @@ class LinkedList:
             node.next = pred.next
             pred.next = node
             
-    
     def insert_last(self, value):
         if self.is_empty():
             self.head = Node(value)
@@ -43,7 +41,6 @@ class LinkedList:
         while pred.next is not None:
             pred = pred.next
         pred.next = Node(value)
-        
         
     def delete_last(self):
         if self.is_empty():
@@ -60,7 +57,6 @@ class LinkedList:
             temp = temp.next 
         pred.next = None
         return temp
-    
     
     def delete_by_value(self, value):
         '''
@@ -86,7 +82,6 @@ class LinkedList:
             # Found it!
             pred.next = temp.next 
         return temp  #return deleted object can be useful if we want to continue to use it outside the list.
-    
     
     def delete_first(self):
         if self.is_empty():
