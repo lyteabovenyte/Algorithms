@@ -41,4 +41,6 @@ return the telex_encoding of the array. (punctuations are spelled out) *(72-epi)
 of periods in ip addresses, imagine the string's length in unbounded,
 return all the possible valid IP addresses with k periods in between.
 
+- [ ] try to implement string matching algorithm(rabin-krap) with additive hash function
+
 - [ ] 
