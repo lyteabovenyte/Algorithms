@@ -301,4 +301,6 @@ def product(*iterables, repeat=1):
 
 - algorithms operating on singly linked list often benefit from **two iterators**, one ahead of the other or one advancing quicker than the other.
 
+- In Python, there’s a specific object in the *collections* module that you can use for linked lists called `deque` (pronounced “deck”), which stands for **double-ended queue**. `collections.deque` uses an implementation of a linked list in which you can access, insert, or remove elements from the beginning or end of a list with constant O(1) performance.
+
 - 
