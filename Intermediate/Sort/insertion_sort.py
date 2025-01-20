@@ -14,7 +14,6 @@ def insertion_sort(arr):
         i += 1
     return arr
 
-# insert the integer n, into array A in a sorted position.
 def InsertionSort(A):
     for i in range(1, len(A)):
         j = i - 1
