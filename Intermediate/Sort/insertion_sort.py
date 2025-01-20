@@ -1,5 +1,9 @@
 '''
-Insertion sort is a sorting algorithm that places an unsorted element at its suitable place in each iteration.
+Insertion sort is a sorting algorithm that places an unsorted element
+at its suitable place in each iteration.
+a highly noticable note here is that insertion sort
+is more compatible with linked-list, cause linked-list
+doesn't need swap.
 '''
 def insertion_sort(arr):
     size = len(arr)
