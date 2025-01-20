@@ -97,3 +97,74 @@ class LinkedList:
             prev_node = node
         
         raise Exception(f'{target_node_data} not found!')
+
+    def get(self, position=None):
+        if position == None:
+            return self.head
+        i = 0
+        for node in self:
+            if i == position:
+                return node.data
+            i += 1
+        raise Exception(f'index out of range: index{position}')
+    
+    def reverse(self):
+        # Two pointer approach
+        current = self.head
+        prev = None
+        while current:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        self.head = prev
+        return self
+    
+    # creating a queue from linkedlist
+    def queue(self):
+        from collections import deque
+        q = deque()
+        for ele in self:
+            q.append(ele)
+        return q
+    
+
+'''
+    Circular linked lists are a type of linked list in which the last node 
+    points back to the head of the list instead of pointing to None.
+    Usage:
+    - Going around each player's turn in a multiplayer game
+    - Managing the application life cycle of a given operating system
+    - Implementing a Fibonacci heap
+'''
+class CircularLinkedList:
+    def __init__(self):
+        self.head = None
+
+    def __iter__(self):
+        node = self.head
+        while node is not None and node.next != self.head:
+            yield node
+            node = node.next
+
+    def __repr__(self):
+        nodes = []
+        for node in self:
+            node.append(str(node))
+        return "-> ".join(nodes)
+
+    def traverse(self, starting_point=None):
+        if starting_point is None:
+            starting_point = self.head
+        node = starting_point
+        while node is not None and (node.next != starting_point):
+            yield node
+            node = node.next
+        yield node
+
+    def print_list(self, starting_point=None):
+        nodes = []
+        for node in self.traverse(starting_point):
+            nodes.append(str(node))
+        print(" -> ".join(nodes))
+    
