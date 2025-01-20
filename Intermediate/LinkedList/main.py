@@ -1,0 +1,99 @@
+'''
+    the original linked list class.
+'''
+
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+    
+    def __repr__(self):
+        return self.data
+    
+
+class LinkedList:
+    def __init__(self, nodes=None):
+        self.head = None
+        if nodes is not None:
+            node = Node(data=nodes.pop(0))
+            self.head = node
+            for elem in nodes:
+                node.next = Node(data=elem)
+                node = node.next
+                
+    def __repr__(self):
+        node = self.head
+        nodes = []
+        while node is not None:
+            nodes.append(str(node.data))
+            node = node.next
+        nodes.append("None")
+        return "-> ".join(nodes)
+    
+    # Traversing a linked-list
+    def __iter__(self):
+        node = self.head
+        while node is not None:
+            yield node
+            node = node.next
+
+    # inserting into the beginning of the linkedlist
+    def add_head(self, node):
+        node.next = self.head
+        self.head = node
+
+    # inserting into the tail
+    def add_tail(self, node):
+        if self.head is None:
+            self.head = node
+            return
+        for current_node in self:
+            pass # goes up until the last node. and current_node become the tail.
+        current_node.next = node
+
+    # inserting after a specific node
+    def insert_after(self, target_node_data, new_node):
+        if self.head is None:
+            raise Exception("LinkedList is empty.")
+        
+        for node in self:
+            if node.data == target_node_data:
+                new_node.next = node.next
+                node.next = new_node
+                return
+            
+        raise Exception(f'{target_node_data} not found!')
+    
+    # insert before a specific node
+    def insert_before(self, target_node_data, new_node):
+        if self.head is None:
+            raise Exception("LinkedList is empty")
+        
+        if self.head.data == target_node_data:
+            self.add_head(new_node)
+
+        prev_node = self.head
+        for node in self:
+            if node.data == target_node_data:
+                prev_node.next = new_node
+                new_node.next = node
+                return
+            prev_node = node
+        
+        raise Exception(f'{target_node_data} not found!')
+    
+    def remove(self, target_node_data):
+        if self.head is None:
+            raise Exception("LinkedList is empty!")
+        
+        if self.head.data == target_node_data:
+            self.head = self.head.next
+
+        prev_node = self.head
+        for node in self:
+            if node.data == target_node_data:
+                prev_node.next = node.next
+                return
+            prev_node = node
+        
+        raise Exception(f'{target_node_data} not found!')
