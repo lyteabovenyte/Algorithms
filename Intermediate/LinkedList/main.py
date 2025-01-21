@@ -120,6 +120,15 @@ class LinkedList:
         self.head = prev
         return self
     
+    def reverse_segment(start, end):
+        prev, current = None, start
+        while current != end:
+            next_node = current.next
+            current.next = prev
+            prev = current
+            current = next_node
+        return prev
+    
     # creating a queue from linkedlist
     def queue(self):
         from collections import deque
