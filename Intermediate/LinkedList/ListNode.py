@@ -28,3 +28,21 @@ class ListNode:
     def delete_after(node):
         # delete the node past this one, Assume node is not a tail
         node.next = node.next.next
+
+# Helper function to create a linked list from a list.
+def create_linked_list(values):
+    if not values:
+        return None
+    head = ListNode(values[0])
+    current = head
+    for value in values[1:]:
+        current.next = ListNode(value)
+        current = current.next
+    return head
+
+# Helper function to print a linked list.
+def print_linked_list(head):
+    current = head
+    while current:
+        print(current.data, end=" -> " if current.next else "\n")
+        current = current.next
