@@ -1,4 +1,4 @@
-from typing import Any, List, Optional, Tuple
+from typing import Any, List, Optional, Tuple, Dict
 
 
 class DWayHeap(object):
@@ -33,6 +33,12 @@ class DWayHeap(object):
 
         if len(elements) > 0:
             self._heapify(elements, priorities)
+
+        # here we can use the underlying array self._pairs
+        # to create a HashMap to simplify the search functionality.
+        self._hashTable: Dict[Any, Any] = {}
+        for index, ele in enumerate(self._pairs):
+            self._hashTable[ele] = index
 
     def __sizeof__(self) -> int:
         """Size of the heap.
