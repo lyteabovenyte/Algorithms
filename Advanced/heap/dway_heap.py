@@ -34,8 +34,12 @@ class DWayHeap(object):
         if len(elements) > 0:
             self._heapify(elements, priorities)
 
-        # here we can use the underlying array self._pairs
-        # to create a HashMap to simplify the search functionality.
+        '''
+            here we can use the underlying array self._pairs
+            to create a HashMap to simplify the search functionality.
+            NOTE: we don't allow duplicates for the keys, otherwise we should keep a list of all indices.
+            NOTE: better to put this functionality away when working with big datasets
+        '''
         self._hashTable: Dict[Any, Any] = {}
         for index, ele in enumerate(self._pairs):
             self._hashTable[ele] = index
@@ -53,6 +57,11 @@ class DWayHeap(object):
         Returns: The number of elements in the heap.
         """
         return len(self._pairs)
+    
+    # recommended just for small datasets.
+    def __contains__(self, elem):
+        idx = self._hashTable[elem]
+        return idx >= 0
 
     def _validate(self) -> bool:
         """Checks that the three invariants for heaps are abided by.
@@ -179,6 +188,7 @@ class DWayHeap(object):
     def first_leaf_index(self):
         return (len(self) - 2) // self.D + 1
 
+    # Time Complexity: O(n).
     def _heapify(self, elements: List[Any], priorities: List[float]) -> None:
         """Initializes the heap with a list of elements and priorities.
 
