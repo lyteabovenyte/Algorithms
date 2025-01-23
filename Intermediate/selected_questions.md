@@ -43,4 +43,6 @@ return all the possible valid IP addresses with k periods in between.
 
 - [ ] try to implement string matching algorithm(rabin-krap) with additive hash function
 
+- [ ] Given a linkedlist and a nonnegative integer k, reverse the list k nodes at a time, if k is not a multiply of n, leave the last n mod k nodes unchanged.[/Intermediate/LinkedList/variant_reverse_K_node_at_a_time.py](source)
+
 - [ ] 
