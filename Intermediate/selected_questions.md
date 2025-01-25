@@ -45,4 +45,9 @@ return all the possible valid IP addresses with k periods in between.
 
 - [ ] Given a linkedlist and a nonnegative integer k, reverse the list k nodes at a time, if k is not a multiply of n, leave the last n mod k nodes unchanged.[/Intermediate/LinkedList/variant_reverse_K_node_at_a_time.py](source)
 
+- [ ] cycalically right shift a linkedlist by k.
+
+- [ ] Given two singly linkedlist, return the list corresponding to the sum of the integers they represent. the least significant digit comes first.
+e.g:  3 -> 1 -> 4  &  7 -> 0 -> 9   -->   0 -> 2 -> 3 -> 1
+
 - [ ] 
