@@ -315,5 +315,16 @@ def reverse(head):
         dummy.next, head.next, head = head, dummy.next, head.next
     return dummy.next
 ```
+so for reversing a sublist of a list:
+```python
+sublist_iter = sublist_head.next
+for _ in range(finish - start):
+    temp = sublist_iter.next
+    sublist_iter.next, temp.next, sublist_head.next = (temp.next,
+                                                        sublist_head.next,
+                                                        temp)
+```
+
+#### chapter 8. Stacks and Queues
 
 - 
