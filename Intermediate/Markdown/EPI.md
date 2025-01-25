@@ -303,4 +303,17 @@ def product(*iterables, repeat=1):
 
 - In Python, there’s a specific object in the *collections* module that you can use for linked lists called `deque` (pronounced “deck”), which stands for **double-ended queue**. `collections.deque` uses an implementation of a linked list in which you can access, insert, or remove elements from the beginning or end of a list with constant O(1) performance.
 
+- consider using `appendleft()` and `popleft()` on a deque object to append and pop to the head of the queue.
+
+- `collections.deque` uses a linked list as part of its data structure. With doubly linked lists, deque is capable of inserting or deleting elements from both ends of a queue with constant O(1) performance.
+
+- reverse a linkedlist: here you are...
+```python
+def reverse(head):
+    dummy = ListNode(0)
+    while head:
+        dummy.next, head.next, head = head, dummy.next, head.next
+    return dummy.next
+```
+
 - 
