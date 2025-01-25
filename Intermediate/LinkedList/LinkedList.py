@@ -89,5 +89,3 @@ class LinkedList:
         temp = self.head
         self.head = self.head.next
         return temp
-    
-    
