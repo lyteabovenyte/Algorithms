@@ -1,7 +1,6 @@
 '''
     Self implemented stack with auxiliary stack to store the max value.
 '''
-from collections import namedtuple
 class Stack:
 
     # auxiliary stack to record the max and it's occurence.
