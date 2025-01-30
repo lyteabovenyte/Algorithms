@@ -243,7 +243,8 @@ For example, product(A, B) returns the same as:  ((x,y) for x in A for y in B).
 ```python
 import itertools
 
-itertools.product(*(`some generator that can be unpacked for the cartesian product`))
+itertools.product(*("some generator that can be unpacked for the cartesian product"))
+# product(range(2), repeat=3) -> 000 001 010 011 100 101 110 111
 ```
 
 - the power of `itertools`. [../String/look_and_say.py](source algo)
@@ -327,4 +328,22 @@ for _ in range(finish - start):
 
 #### chapter 8. Stacks and Queues
 
+- learn to recognize where the stack **LIFO** property is applicable, for example *parsing* typically benefits from a stack.
+
+- some problems require to implement our own stack class, but for others use the built-in `list` type
+
+- when called on an empty list, both `l[-1]` and `l.pop()` raise and `IndexError` exception.
+
+- in Queues, an insertion to the front is commonly called a *push*, and an insetion to the back is commonly called as *inject*. a deletion from the front is commonly called a *pop* and a deletion from the back is commonly called *eject*.
+- learn where the FIFO can be applicable, for example, queues are ideal when the *order* need to be preserved.
+
+#### chapter 9. Binary Trees
+
+- _height_ of a tree at each depth are the number of edges from root to that node, and the _level_ is the number of nodes from root to that node.
+- at unlabeled nodes type of trees: the number of Trees for a given number of nodes is calculated from this formula --> `(2*n C5) / n + 1` (Catalan Number formula)
+- at unlabeled nodes type of trees: for any number of nodes we have `2 ^ n - 1` trees with max-height
+- <img src="pictures/height-nodes.png" height="350" width="350">
+
+- in binary tree this formula is always True -> number of nodes with `deg(0)` = number of nodes with `deg(2)` (the relationship between internal nodes and external nodes)
+- in strict binary tree this formula is always True -> `e = i + 1` (external and internal nodes)
 - 
