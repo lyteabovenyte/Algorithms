@@ -339,11 +339,27 @@ for _ in range(finish - start):
 
 #### chapter 9. Binary Trees
 
-- _height_ of a tree at each depth are the number of edges from root to that node, and the _level_ is the number of nodes from root to that node.
+- _height_ of a tree at each depth are the number of edges from root to that node, and the _level_ is the number of nodes from root to that node. the _depth_ of a node n is the number of nodes on the _search path_ from the root to the n not including the n itself.
 - at unlabeled nodes type of trees: the number of Trees for a given number of nodes is calculated from this formula --> `(2*n C5) / n + 1` (Catalan Number formula)
 - at unlabeled nodes type of trees: for any number of nodes we have `2 ^ n - 1` trees with max-height
 - <img src="pictures/height-nodes.png" height="350" width="350">
 
 - in binary tree this formula is always True -> number of nodes with `deg(0)` = number of nodes with `deg(2)` (the relationship between internal nodes and external nodes)
 - in strict binary tree this formula is always True -> `e = i + 1` (external and internal nodes)
+- formally a binary tree, is a either empty, or a _root_ node `r` together with a left binary tree and a right binary tree.
+- at a high level, binary trees are commonly applicable when dealing with hierarchies.
+- the number of non-leaf nodes in a _full binary tree_ is one less than the number of leaves
+- a perfect binary tree of height _h_ contains exactly `2^(h+1) -1` nodes of which `2^h` are leaves.
+- there are different kinds of traversing a binary tree --> _inorder_ , _preorder_, _postorder_
+- a complete binary tree of height `h` is a full binary tree of height `h - 1` which in the last height elements are filled from left to right without skipping any element
+- we need complete binary trees, to be suitable for arrays, so we don't have any blanked spaces in between. (remember stacks and queues)
+- the actual representation of Tree traversal:
+    - *Preorder* -> visit(node), Preorder(left), Preorder(right)
+    - *Inorder* -> Inorder(left), visit(node), Inorder(right)
+    - *Postorder* -> Postorder(left), Postorder(right), visit(node)
+
+- to generate a tree with linked representation we get the help of **Queue**.
+- the function call stack in traversing a binary tree is `h + 2` and the call to the function on the recursive implementation of each one of them is `2n+1` --> `O(n)`
+- in level by level traversal, we use *Queue* and push the address of the nodes into it. when we hit `NULL` we pop from the queue and make the pointer point to that address then continue
+- 
 - 
