@@ -14,9 +14,16 @@ def search_string(t, s):
             return i
     return False
 
-
 # returns the start of the substring index i.e 4.
-print(search_string("lyteabovenyte", "nyte")) 
+print(search_string("lyteabovenyte", "nyte"))
+
+
+def another_sol(t, s):
+    for i in range(len(t) - len(s) + 1):
+        if t[i:i + len(s)] == s:
+            return i
+    return -1
+
 
 '''
 the popular string matching algorithms are
