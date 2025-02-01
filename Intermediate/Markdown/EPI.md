@@ -28,6 +28,7 @@ lst = [P1, P2, P3, P4]
 # sorting based on y
 sorted_lst = sorted(lst, key=attrgetter('y'))
 ```
+- Nice note to be aware of: `a - (a & b) + b = 11100111` [explanation](https://stackoverflow.com/questions/1604258/why-is-a-b-equivalent-to-a-a-b-b)
 
 #### chapter 5. Arrays
 ###### books bootcamp on array notes:
