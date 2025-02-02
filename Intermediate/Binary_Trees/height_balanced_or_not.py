@@ -6,12 +6,13 @@
 import collections
 
 def height_balanced_or_not(tree):
-    BalancedStatusWithHeight = collections.namedtuple('BalancedStatusWithHeight', ('balanced', 'height'))
+    BalancedStatusWithHeight = collections.namedtuple('BalancedStatusWithHeight',
+                                                      ('balanced', 'height'))
 
-    def check_balanced(tree): 
+    def check_balanced(tree):
         if not tree:
             return BalancedStatusWithHeight(True, -1) # Base Case
-        
+
         left_result = check_balanced(tree.left)
         if not left_result.balanced:
             # Left subtree is not balanced
@@ -26,3 +27,20 @@ def height_balanced_or_not(tree):
         return BalancedStatusWithHeight(is_balanced, height)
 
     return check_balanced(tree).balanced
+
+
+# second version
+def is_balanced(self, node=None):
+    """Checks if the tree is balanced."""
+    if node is None:
+        node = self.root
+    if not node:
+        return True
+
+    left_height = self.height(node.left)
+    right_height = self.height(node.right)
+
+    if abs(left_height - right_height) > 1:
+        return False
+
+    return self.is_balanced(node.left) and self.is_balanced(node.right)
