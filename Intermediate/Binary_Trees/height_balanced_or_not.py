@@ -30,17 +30,24 @@ def height_balanced_or_not(tree):
 
 
 # second version
-def is_balanced(self, node=None):
+def is_balanced(root, node=None):
     """Checks if the tree is balanced."""
+
+    def height(tree=None):
+        if not tree:
+            return -1 # height of empty tree is -1
+        return 1 + max(height(root.left) + height(root.right))
+
+
     if node is None:
-        node = self.root
+        node = root
     if not node:
         return True
 
-    left_height = self.height(node.left)
-    right_height = self.height(node.right)
+    left_height = height(node.left)
+    right_height = height(node.right)
 
     if abs(left_height - right_height) > 1:
         return False
 
-    return self.is_balanced(node.left) and self.is_balanced(node.right)
+    return is_balanced(node.left) and is_balanced(node.right)
