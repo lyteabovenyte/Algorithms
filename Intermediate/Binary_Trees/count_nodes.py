@@ -3,9 +3,6 @@
 """
 
 def count(tree):
-    x, y = 0, 0
-    while tree:
-        x = count(tree.left)
-        y = count(tree.right)
-        return x + y + 1
-    return
+    if not tree:
+        return 0
+    return count(tree.left) + count(tree.right) + 1
