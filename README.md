@@ -12,6 +12,9 @@
 - [X] string-search using **rabin-krap** algorithm for linear-time complexity.[source](/Intermediate/String/string_search_algorithm.py)
 - [X] **Floyd’s Tortoise and Hare algorithm** (also called the cycle detection algorithm)
 - [X] Multiple **Queue** classes for different use cases.
+- [X] Multiple approaches for both ***Recursive*** and ***Iterative*** traversals of Trees plus balancing, completeness and more
+- [X] Computing **LCA** (lowest-common-ancestor); it is an essential calculation when rendering web pages, specifically when computing the *Cascading Style Sheet* (CSS) that is applicable to a particular _Document Object Model_ (DOM)
+- 
 
 
 ###### Advanced:
