@@ -16,6 +16,8 @@ def is_symmetric(tree):
                     check_symmetric(subtree0.left, subtree1.right)
                     and
                     check_symmetric(subtree0.right, subtree1.left))
+        # at this point, one the subtrees are bigger.
+        # means that one subtree is empty and the other one is not.
         return False
     return not tree or check_symmetric(tree.left, tree.right)
 
