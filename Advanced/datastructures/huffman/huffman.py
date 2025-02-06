@@ -1,6 +1,6 @@
 import collections
 from typing import Dict, List, Optional
-from heap.dway_heap import DWayHeap
+from Advanced.datastructures.heap.dway_heap import DWayHeap
 
 
 class HuffmanNode(object):
