@@ -362,5 +362,7 @@ for _ in range(finish - start):
 - to generate a tree with linked representation we get the help of **Queue**.
 - the function call stack in traversing a binary tree is `h + 2` and the call to the function on the recursive implementation of each one of them is `2n+1` --> `O(n)`
 - in level by level traversal, we use *Queue* and push the address of the nodes into it. when we hit `NULL` we pop from the queue and make the pointer point to that address then continue
+- to generate a tree with traversal we need Inorder --> cause inorder help us decide the nodes to split the nodes, cause it is in order. the root is defined in the middle.
+- consider using the **monotonic decreasing stack** in an array of integers to construct the max-tree of the array.
 - 
 - 
