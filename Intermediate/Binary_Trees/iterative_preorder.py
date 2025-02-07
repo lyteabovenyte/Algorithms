@@ -15,5 +15,3 @@ def iterative_preorder(tree):
         stack.append(node.left)
 
     return result
-
-
