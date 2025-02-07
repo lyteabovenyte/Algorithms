@@ -364,5 +364,10 @@ for _ in range(finish - start):
 - in level by level traversal, we use *Queue* and push the address of the nodes into it. when we hit `NULL` we pop from the queue and make the pointer point to that address then continue
 - to generate a tree with traversal we need Inorder --> cause inorder help us decide the nodes to split the nodes, cause it is in order. the root is defined in the middle.
 - consider using the **monotonic decreasing stack** in an array of integers to construct the max-tree of the array.
+- if the recursion function is a tail recursion (means that the recursive call is at the end of the function), to convert it to iteratvie function, we don't need stack.
+- after deleting a node in a binary search tree, the *inorder predecessor* or the *inorder successor* will take it's place(rightmost child of the left subtree or leftmost child of the right subtree)
+- we can reconstruct a binary search tree from just a preorder using a stack.
+- the drawback of a binary search tree is that there is not control on the height of the tree, and it all depends on the insertion order.
+###### AVL Trees. (height-balanced binary search trees)
 - 
 - 
