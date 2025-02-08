@@ -35,7 +35,7 @@ move index 2 to index 1, move index 3 to index 3 (uncahnged).
 - [ ] Given an array of characters, the character can be digits, letters, blanks and punctuation,
 return the telex_encoding of the array. (punctuations are spelled out) *(72-epi)*
 
-- [ ] the step-by-step recursive approach of mnemonic phone numbers. [/Intermediat/String/mnemonic_phone_number.py](answer)
+- [ ] the step-by-step recursive approach of mnemonic phone numbers. [/Intermediate/String/mnemonic_phone_number.py](answer)
 
 - [ ] Given a decimal string which denotes ip addresses and an integer k which denotes the number
 of periods in ip addresses, imagine the string's length in unbounded,
@@ -49,5 +49,16 @@ return all the possible valid IP addresses with k periods in between.
 
 - [ ] Given two singly linkedlist, return the list corresponding to the sum of the integers they represent. the least significant digit comes first.
 e.g:  3 -> 1 -> 4  &  7 -> 0 -> 9   -->   0 -> 2 -> 3 -> 1
+
+- [ ] Check if a binary Tree is height balanced or not. (Two version implemented).
+
+- [ ] define a node in a binary tree to be k-balanced if the difference in the number of nodes in it's
+    left and right subtree is no more than k. design an algorithm that takes as input a binary tree
+    and a positive integer k, and returns a node in the binary tree such that the node is
+    not k-balanced, but all its descendants are k-balanced.
+
+- [ ] iterative inorder without recursion (using stack) and also another iterative function with constant space complexity (without stack)
+
+- [ ] trace max-tree [Binary_Trees/variant_max_tree_on_A.py]
 
 - [ ] 
