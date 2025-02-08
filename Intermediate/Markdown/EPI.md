@@ -369,5 +369,5 @@ for _ in range(finish - start):
 - we can reconstruct a binary search tree from just a preorder using a stack.
 - the drawback of a binary search tree is that there is not control on the height of the tree, and it all depends on the insertion order.
 ###### AVL Trees. (height-balanced binary search trees)
-- 
+- rotations are always performed on _three_ nodes only.
 - 
