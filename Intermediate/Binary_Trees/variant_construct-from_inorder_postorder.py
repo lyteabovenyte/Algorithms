@@ -42,3 +42,24 @@ def buildTree(inorder: List[int], postorder: List[int]) -> Optional[TreeNode]:
         return root
 
     return construct(0, len(inorder) - 1)
+
+def buildTree2(inorder: List[int], postorder: List[int]) -> TreeNode:
+    rec = {val: i for i, val in enumerate(inorder)}
+
+    # Helper function
+    def helper(in_start: int, in_end: int, post_start: int, post_end: int):
+        if in_start > in_end or post_start > post_end:
+            return None
+
+        val = postorder[post_end]
+        root = TreeNode(val)
+        idx = rec[val]
+        left_subtree_size = idx - in_start
+
+        # Recursively build left and right subtrees
+        root.left = helper(in_start, idx - 1, post_start, post_start + left_subtree_size - 1)
+        root.right = helper(idx + 1, in_end, post_start + left_subtree_size, post_end - 1)
+
+        return root
+
+    return helper(0, len(inorder) - 1, 0, len(postorder) - 1)
