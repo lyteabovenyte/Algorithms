@@ -3,11 +3,13 @@
     return all the paths to the leaves whose path weights equal to k.
     suppose the path weight of such a tree is the sum of the integers on
     unique path from the root to that node.
+
+    Approach: Depth-First Search (DFS) with backtracking to explore all possible paths
 """
 from BinaryTreeNode import BinaryTreeNode as N
 def variant_path_to_leaf_sum(root, k):
     result = []
-
+ 
     def path_to_leaf_helper(node, remaining_weight, partial_res):
         if not node:
             return
