@@ -42,7 +42,7 @@ print(LCA(tree, 10, 9))
 
 """
     the program below returns and object with two fields
-    the first is an integer indication how many of the two
+    the first is an integer indicating how many of the two
     nodes were present in that subtree, and the second is their LCA
     if both nodes were present
     somewhat similar to recursive postorder traversal.
@@ -74,6 +74,17 @@ def lowest_common_ancestor(tree, node0, node1):
 print(lowest_common_ancestor(tree, 6, 8))
 
 
+def lca2(root, p, q):
+    if not root or root == p or root == q: 
+            return root
+        
+    left = lca2(root.left, p, q)
+    right = lca2(root.right, p, q)
+
+    if left and right:
+        return root # Found
+    
+    return left if left else right
 
 
 
