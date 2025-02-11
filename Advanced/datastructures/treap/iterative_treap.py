@@ -151,5 +151,43 @@ class Treap:
         key = self.root.key
         self._delete(key)
         return key
+
+    def peek(self):
+        return self.root.key
     
-    
+    def update(self, prev_key, new_key):
+        node = self.search(prev_key)
+        if not node:
+            raise ValueError(f'Node {prev_key} not found.')
+        node.priority = new_key
+        if node.priority > node.parent.priority:
+            while node.parent is not None:
+                # we need to bubble up
+                if node == node.parent.left:
+                    self._rotate_right(node)
+                else:
+                    self._rotate_left(node)
+
+        elif node.priority < max(node.left.priority, node.right.priority):
+            # we need to push down
+            while node is not None:
+                if node.left and (node.right is None or node.right.priority < node.left.priority):
+                    node._rotate_right(node.left)
+                else:
+                    node._rotate_left(node.right)
+
+    def min(self):
+        if self.root is None:
+            raise Exception('Empty treap.')
+        root_ = self.root
+        while root_.left is not None:
+            root_ = root_.left
+        return root_.key
+
+    def max(self):
+        if self.root is None:
+            raise Exception('Empty treap.')
+        root_ = self.root
+        while root_.right is not None:
+            root_ = root_.right
+        return root_.key
