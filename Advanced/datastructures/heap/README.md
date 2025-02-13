@@ -1,5 +1,7 @@
 ##### explaination of heap on the [heapq module](https://docs.python.org/3/library/heapq.html).
 
+###### important Note: remember that `heapq` module only provides ***min-heap*** funcitonality. if you need to build a max-heap on integers or floats, insert their *negative* to get the effect of a max-heap using `heapq`. for objects, implement `__lt()__` approriately.
+
 Heaps are arrays for which a[k] <= a[2*k+1] and a[k] <= a[2*k+2] for
 all k, counting elements from 0.  For the sake of comparison,
 non-existing elements are considered to be infinite.  The interesting
