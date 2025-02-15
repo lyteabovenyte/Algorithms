@@ -14,6 +14,7 @@
 - [X] Multiple **Queue** classes for different use cases.
 - [X] Multiple approaches for both ***Recursive*** and ***Iterative*** traversals of Trees plus balancing, completeness and more
 - [X] Computing **LCA** (lowest-common-ancestor); it is an essential calculation when rendering web pages, specifically when computing the *Cascading Style Sheet* (CSS) that is applicable to a particular _Document Object Model_ (DOM)
+- [X] Often data is almost sorted. for example a server receives timestamped stock quotes and earlier quotes may arrive slightly after later quotes becuase of the difference in server loads and network routes. so implementing sorting algorithms based on **heap** data structure could be the most efficient way of sorting almost sorted *streams*
 - 
 
 
