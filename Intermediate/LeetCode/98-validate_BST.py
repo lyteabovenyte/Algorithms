@@ -35,6 +35,7 @@ def is_valid_bst(root):
         if (not root.val > min_ and root.val < max_):
             return False
         
-        return helper(root.left, min_, root.val) and (root.right, root.val, max_)
+        return (helper(root.left, min_, root.val) and
+                 (root.right, root.val, max_))
     
     return helper(root, float('-inf'), float('inf'))
