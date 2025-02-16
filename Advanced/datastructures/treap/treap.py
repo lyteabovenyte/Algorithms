@@ -1,6 +1,5 @@
 import random
 
-
 class TreapNode:
     def __init__(self, key):
         self.key = key
@@ -31,6 +30,12 @@ class Treap:
 
     # --- Insert Operation ---
 
+    """
+        Combined of two operatins: 
+        1. add the node to the leaf
+        2. if the node's priority is greater than it's parent,
+        take the subtree rooted at the parent and perform the needed rotation.
+    """
     def _insert(self, node, key):
         """ Insert a key into the treap recursively """
         if node is None:
@@ -85,7 +90,12 @@ class Treap:
     # --- Search Operation ---
 
     def _search(self, node, key):
-        """ Search for a key in the treap recursively """
+        """
+            Search for a key in the treap recursively
+            Consider stack overflow for these kinds of recursion methods
+            and also consider the tail call optimization if it is supported
+            in programming languages compiler.
+        """
         if node is None:
             return False
         if node.key == key:
