@@ -1,9 +1,19 @@
-import mmh3  # MurmurHash for better hashing
+import mmh3  # MurmurHash to use alongside fnv-1 hashing to be collision-free.
 import bitarray  # Efficient bit storage
 import math
+import random
 
+"""
+    Initialization notes:
+    the number of bits to be used in bloom-filter to tolerate the
+    max probility of false positives and the number of hash_functions
+    to be generated to find the indices of a ceratin key
+    could be computed up front using the formula.
+    number_of_bits m = -n * ln(p) / ln(2)2 -> p is max_tolerance, is is the max_size
+    number_of_hashes k = m/n * ln(2)
+"""
 class BloomFilter:
-    def __init__(self, size, num_hashes, seed):
+    def __init__(self, size, num_hashes, seed=random.randint()):
         """
         Initialize a Bloom Filter.
         taking a seed to generate deterministic hash functions.
@@ -48,7 +58,7 @@ class BloomFilter:
         self.bit_array[element] = self.bit_array[element] | (1 << bit)
         return self.bit_array
     
-    def key_to_positions(self, hash_functions, key):
+    def key_to_positions(self, key):
         """
             Method key_to_positions takes and array of hash functions as
             input, together with a seed to initialize these hash functions
@@ -56,11 +66,9 @@ class BloomFilter:
             It returns the set of bits indices that
             needs to be updated in the bloom-filter to read/write key.
         """
-        hM = mmh3.hash(key, self.seed)
-        hF = self.fnv1_hash(key)
         # returing self.num_hashes indices based on self.num_hashes different
         # deterministic hash_functions.
-        return [self._hashes[i](key) for i in range(self.num_hashes)]
+        return [index for index in self._hashes(key)]
 
     def fnv1_hash(self, key):
         """ Computing FNV-1 64-bit hash."""
@@ -78,18 +86,45 @@ class BloomFilter:
             and creates and returns a list of double hashing funcitons,
             taking two values and returning their hash.
         """
-        def hash_functions(key):
-            return (mmh3.hash(str(key), self.seed) + i * self.fnv1_hash(key) for i in range(self.num_hashes)) % self.size
+        def hash_functions(key, i):
+            # returns the corresponding index in buffer.
+            return (mmh3.hash(str(key), self.seed) + i * self.fnv1_hash(key)) % self.size
         
         # returning self.num_hashes hash_funcitons based on double hashing strategy
         # for the given string key
         return [lambda key, i=i: hash_functions(key, i) for i in range(self.num_hashes)]
 
-    def contain(self, item):
+    def contain(self, key, positions=None):
         """
         Check if an element is possibly in the Bloom Filter.
+        also we can use self.read_bit method here.
         """
-        return all(self.bit_array[hash_val] for hash_val in self._hashes(item))
+        if positions == None:
+            positions = self.key_to_positions(key)
+        return all(self.bit_array[index] for index in self._hashes(key))
+
+    def insert(self, key):
+        """
+            Method insert computes the corresponding bit for the key
+            using hash_functions and write 1 in those indices.
+            is also changes the size of the buffer in respect to 
+            the elements that are added to bloom_filter.
+            returns buffer after adding key.
+        """
+        positions = self.key_to_positions(key)
+        if not self.contain(key, positions):
+            self.size += 1
+            for index in positions:
+                self.bit_array = self.write_bit(index)
+        return self.bit_array
+
+    def false_positive_probibility(self):
+        """
+            Method false_positive_probibility estimates the probibility of getting
+            false positive based on the current status of the filter,
+            that is the number of elements currently stored compared to the max capacity
+        """
+        return math.pow((1 - pow(math.e, self.num_hashes * self.size / len(self.bit_array))), self.num_hashes)
 
     def __str__(self):
         """
