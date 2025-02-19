@@ -6,9 +6,9 @@ class BloomFilter:
     def __init__(self, size, num_hashes, seed):
         """
         Initialize a Bloom Filter.
-        
-        :param size: Number of bits in the bit array
-        :param num_hashes: Number of hash functions
+        taking a seed to generate deterministic hash functions.
+        taking the size of buffer and the number of hash_functions
+        to determine the indexes of any key in buffer.
         """
         self.size = size
         self.seed = seed
@@ -18,7 +18,7 @@ class BloomFilter:
 
     def find_bit_coordinates(self, index):
         """
-            function find_bit_coordinates is a utility method that,
+            Method find_bit_coordinates is a utility method that,
             given the index of a bit in a bit-array returns the
             index of the array and the offset of the bit with
             repect to the array's element at that index.
@@ -88,9 +88,6 @@ class BloomFilter:
     def contain(self, item):
         """
         Check if an element is possibly in the Bloom Filter.
-        
-        :param item: The input element to check
-        :return: True if possibly present, False if definitely absent
         """
         return all(self.bit_array[hash_val] for hash_val in self._hashes(item))
 
