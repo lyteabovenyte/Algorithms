@@ -3,7 +3,7 @@ import bitarray  # Efficient bit storage
 import math
 
 class BloomFilter:
-    def __init__(self, size, num_hashes):
+    def __init__(self, size, num_hashes, seed):
         """
         Initialize a Bloom Filter.
         
@@ -11,6 +11,7 @@ class BloomFilter:
         :param num_hashes: Number of hash functions
         """
         self.size = size
+        self.seed = seed
         self.num_hashes = num_hashes
         self.bit_array = bitarray.bitarray(size)
         self.bit_array.setall(0)  # Initialize all bits to 0
@@ -23,37 +24,66 @@ class BloomFilter:
             repect to the array's element at that index.
         """
         # since we are using bitarray module.
-        BITS_PER_INT = 8 
+        BITS_PER_INT = 8
         byte_index = math.floor(index // BITS_PER_INT)
         bit_offset = index % BITS_PER_INT
-        return (byte_index, bit_offset)
-
+        return (self.bit_array[byte_index], bit_offset)
 
     def read_bit(self, index):
+        """
+            Method read_bit extracts the index-th bit from
+            bit_array passed as first argument.
+            it returns the value of the bit, so either 0 or 1.
+        """
         element, bit = self.find_bit_coordinates(self.bit_array, index)
-        return (self.bit_array[element])
+        return (self.bit_array[element] & (1 << bit)) >> bit
     
+    def write_bit(self, index):
+        """
+            Method write_bit change the index-th bit to 1.
+            this version of bloom_filter doesn't support deleting
+            so we just wirte 1 at the corresponding index.
+        """
+        element, bit = self.find_bit_coordinates(index)
+        self.bit_array[element] = self.bit_array[element] | (1 << bit)
+        return self.bit_array
+    
+    def key_to_positions(self, hash_functions, key):
+        """
+            Method key_to_positions takes and array of hash functions as
+            input, together with a seed to initialize these hash functions
+            and the key to be hashed. 
+            It returns the set of bits indices that
+            needs to be updated in the bloom-filter to read/write key.
+        """
+        hM = mmh3.hash(key, self.seed)
+        hF = self.fnv1_hash(key)
+        # returing self.num_hashes indices based on self.num_hashes different
+        # deterministic hash_functions.
+        return [self._hashes[i](key) for i in range(self.num_hashes)]
 
-    def _hashes(self, item):
-        """
-        Generate 'num_hashes' hash values using double hashing.
+    def fnv1_hash(self, key):
+        """ Computing FNV-1 64-bit hash."""
+        h = 14695981039346656037  # FNV-1 64-bit offset basis
+        fnv_prime = 1099511628211
+        for byte in key.encode():
+            h ^= byte
+            h *= fnv_prime
+        return h
         
-        :param item: The input item to be hashed
-        :return: A list of hash values
+    def _hashes(self, key):
         """
-        hash1 = mmh3.hash(item, 42) % self.size  # First hash function (seed=42)
-        hash2 = mmh3.hash(item, 84) % self.size  # Second hash function (seed=84)
-        # it returns the indices which should switch to 1(bit).
-        return [(hash1 + i * hash2) % self.size for i in range(self.num_hashes)]
-
-    def insert(self, item):
+            Method _hashed uses self.size (number of bits held by bloom_filter)
+            and the number of desired hash_functions (self.num_hashes)
+            and creates and returns a list of double hashing funcitons,
+            taking two values and returning their hash.
         """
-        Insert an element into the Bloom Filter.
+        def hash_functions(key):
+            return (mmh3.hash(str(key), self.seed) + i * self.fnv1_hash(key) for i in range(self.num_hashes)) % self.size
         
-        :param item: The input element to insert
-        """
-        for hash_val in self._hashes(item):
-            self.bit_array[hash_val] = 1  # Set corresponding bits to 1
+        # returning self.num_hashes hash_funcitons based on double hashing strategy
+        # for the given string key
+        return [lambda key, i=i: hash_functions(key, i) for i in range(self.num_hashes)]
 
     def contain(self, item):
         """
@@ -69,18 +99,3 @@ class BloomFilter:
         Return a string representation of the Bloom Filter.
         """
         return self.bit_array.to01()  # Convert bit array to string for visualization
-    
-
-# # Example Usage
-# bloom = BloomFilter(size=1000, num_hashes=5)
-
-# # Insert elements
-# bloom.insert("apple")
-# bloom.insert("banana")
-# bloom.insert("cherry")
-
-# # Check elements
-# print(bloom.check("apple"))  # Output: True (definitely present)
-# print(bloom.check("banana"))  # Output: True (definitely present)
-# print(bloom.check("grape"))  # Output: False (definitely absent)
-# print(bloom.check("orange"))  # Output: True/False (possibly present or definitely absent)
