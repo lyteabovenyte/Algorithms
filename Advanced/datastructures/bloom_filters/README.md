@@ -143,4 +143,3 @@ If we query X, we find it in Layer 2, so we estimate its count to be in the rang
 ```
 - it's worth noting that both `insert()` and `contains()` in a LBF takes constant time and is independent of the number of elements which are added to the layered bloom filter.
 - Randomized algorithms are divided into **Monte Carlo** and **Las Vegas** algorithms, depending on where the uncertainty lies.
-- 
