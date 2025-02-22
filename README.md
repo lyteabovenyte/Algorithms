@@ -22,3 +22,11 @@
 - [X] full implementation of **heap** and **Priority Queues**
 - [X] full implementation of **huffman Trees** and **huffman encoding** techniques
 - [X] full implementation of **Bloom-filter** (similar to HashSet API) using **Cython** and **python** plus variants hashing mathodology used in HashTables (*chaining* and *open-addressing*) + implementing a very tiny email app to poppup 'save contant' if the recipient is not seen.
+- [X] full Implementation of three variants of **dijoint_sets**:
+    - arrays
+    - linked-list representation
+    - compression path (using custom `Info` class)
+
+and full implementation of their *applications* (connected components on an unidrected graph(both traditional *DFS* appraoch(for *static* graphs) and disjoint_sets approach(for *dynamic* graphs)))
+
+- 
