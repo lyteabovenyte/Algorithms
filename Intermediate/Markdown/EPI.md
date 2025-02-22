@@ -368,6 +368,54 @@ for _ in range(finish - start):
 - after deleting a node in a binary search tree, the *inorder predecessor* or the *inorder successor* will take it's place(rightmost child of the left subtree or leftmost child of the right subtree)
 - we can reconstruct a binary search tree from just a preorder using a stack.
 - the drawback of a binary search tree is that there is not control on the height of the tree, and it all depends on the insertion order.
+- comparison between **DFS** and **BFS**:
+<img src="pictures/dfs_bfs.png" height="350" width="550">
 ###### AVL Trees. (height-balanced binary search trees)
+
 - rotations are always performed on _three_ nodes only.
+
+- **BFS** : 
+    - BFS is a graph traversal algorithm that explores all neighboring nodes at the *present* depth before moving on to nodes at the next depth level.
+    - It is implemented using a **queue** (FIFO structure) and is useful for:
+      - Finding the shortest path in an unweighted graph.
+      - Level-order traversal of trees.
+      - Connected component detection in graphs.
+
+#### Chapter 10. Heaps
+
+- heaps are defined as a complete binary tree.
+- heaps are sometimes referred to as *priority queues*, because it somehow behaves like a queue, with a little difference with is any key,
+has a priority associated to it, and that key as at the index `0`, and we pop it.
+- sorting heap aka heap sort: `sorted_items = [heapq.heappop(heap) for _ in range(len(heap))]`
+- a *min-heap* is ideal for maintaining a collection of elements when we need to add arbitrary values and extract the smallest element.
+- consider using `itertools.groupby()` when is needed.
+```python
+from itertools import groupby
+
+# the input array is increasing up to certain index and then decreasing
+# this pattern is repeated for k times
+# we want to store each increasing and decreasing array separately.
+def list_k_increasing_decreasing_array.py(A):
+    class Monotonic:
+        def __init__(self):
+            self._last = float('-inf') # the first seq is increasing order
+
+        def __call__(self, curr):
+            res = curr < self._last
+            self._last = curr
+            return res
+
+    return [list(group)[::-1 if is_decreasing else 1] for is_decreasing, group in itertools.groupby(A, Monotonic())]
+```
+- in the above code, we've defined a Monotonic class to use it as a key function to our `groupby` method. when it is called, it checks the curr element with the last seen element, and if it is smaller, it determines that we are in decreasing order otherwise we are in increasing order and based on this feature, we are grouping our list into monotonic list of lists.
+
+#### chapter 11. Searching
+
+- **search algorithms** can be classified in a number of ways. Is the underlying collection static or dynamic? i.e, insert and deletes are interleaved with searching? Is it worth spending the computational cost to preprocess the data so as to speed up subsequent queries? Are there statistical properties of the data that can be exploited? Should we operate directly on the data or transform it?
+
+- binary search are applicable not just for searching in a sorted array, but also is used to search an **interval of real numbers or integer**
+- if the solution uses sorting and the computation after the sorting is faster than sorting e.g O(n) or O(log n), look for a solution that **do not perform a complete sort**.
+
+- the fundamental idea of using binary search is to **maintain a set of candidate** results.
+
 - 
