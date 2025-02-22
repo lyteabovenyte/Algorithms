@@ -1,5 +1,6 @@
 """
     Using disjoint_sets to find the connected components in an undirected graph.
+    it's good for dynamic graphs.
 """
 from typing import List, Tuple
 
