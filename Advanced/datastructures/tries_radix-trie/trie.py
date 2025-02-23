@@ -51,7 +51,7 @@ class Trie:
             return False
         return self._search(self.root, s)
 
-    def search_node(self, node: Node, s):
+    def _search_node(self, node: Node, s):
         """
             Method search_node is basically a variant of Method _search
             but instead of just returning True or False, it'll return the
@@ -99,3 +99,49 @@ class Trie:
             return False
         return self._insert(self.root, s)
     
+    def _ordinary_remove(self, s):
+        """
+            Method remove simply search for the node containing
+            string 's' and set it's key_node to False and makes
+            it intermediate node.
+
+            Warning: this method may leave dangling branches
+            and leak memory.
+        """
+        node = self._search_node(self.root, s)
+        if node == None or node.key_node == False:
+            return False
+        node.key_node = False
+        return True
+
+    def _remove_with_pruning(self, node: Node, s):
+        """
+            Method remove_with_pruning is the preferred remove method of Trie.
+            it's implementing a pruning method that will remove
+            dangling nodes while backtracking the path traversed
+            during search.
+            it returns a couple of Booleans, the first one tells the caller
+            that the key has been successfully deleted, the second one is
+            True if the last link followed becomes a dangling empty branch
+            and should be pruned.
+        """
+        if s == "":
+            deleted = node.key_node
+            node.key_node = False
+            # return that the operation was successful and
+            # if this node is to be pruned.
+            return (deleted, len(node._children) == 0)
+        c, tail = s[0], s[1:]
+        if node._children[c] is not None:
+            (deleted, should_prune) = self._remove_with_pruning(node._children[c], tail)
+            if deleted and should_prune:
+                node._children[c] = None
+                if node.key_node is not None or len(node._children) > 0:
+                    should_prune = False
+                    return (deleted, should_prune)
+        return (False, False) # at this point the search was unsuccessful and we return.
+
+    def remove(self, s):
+        if self.root == None:
+            return (False, False)
+        return self._remove_with_pruning(self.root, s)
