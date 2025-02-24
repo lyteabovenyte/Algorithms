@@ -1,5 +1,9 @@
 #### Tries, radix trie: Efficient string search.
 
+
+---
+#### Tries:
+
 - find all the keys in the container that starts with the same prefix.
 - contract with the client within the API of this data structure(string_container or prefix_tree):
   - Besides all the operations of a regular, plain container(`insert`, `remove`, `contain`), this structure allows us to search for the longest prefix of a string that is stored in it and return all the stored strings that start with a certain prefix.
@@ -19,4 +23,36 @@ the text where each occurrence starts.
 
 - **think about indexing words in Trie!!**
 
-- aaec7b
+- let’s also recap the pros and cons of using tries, and when we should prefer a trie over a BST:
+  - pros:
+    - The search time only depends on the length of the searched string.
+    - Search misses only involve examining a few characters (in particular, just the
+    longest common prefix between the search string and the corpus stored in the
+    tree).
+    - There are no collisions of unique keys in a trie.
+    - There is no need to provide a hash function or to change hash functions as
+    more keys are added to a trie
+    - A trie can provide an alphabetical ordering of the entries by key.
+  - cons:
+    - Tries can be slower than hash tables at looking up data whenever a container is
+    too big to fit in memory. Hash tables would need fewer disk accesses, even down
+    to a single access, while a trie would require O(m) disk reads for a string of
+    length m.
+    - Hash tables are usually allocated in a single big and contiguous chunk of memory, 
+    while trie nodes can span the whole heap. So, the former would better
+    exploit the principle of locality.
+    - Tries have memory overhead for nodes and references. As we have seen, some
+    implementations require each node to store an array of k edges, where k is
+    the alphabet used —even if the node has few or no children at all.
+
+---
+###### In summary, the advice could be to use tries when you have to frequently perform preix searches (*longestPrefix* or *keysWithPrefix*). Use hash tables when data is stored on slow supports like disk or whenever *memory locality* is important. In all intermediate cases, profiling can help you make the best decision.
+
+---
+
+- We have seen that we can use associative arrays, dictionaries in particular, to implement nodes, only storing edges that are not null. Of course, this solution comes at a cost: not only the cost to access each edge (that can be the cost of hashing the character plus the cost of resolving key conflicts), but also the cost of resizing the dictionary
+when new edges are added.
+
+----
+#### Radix Tries:
+
