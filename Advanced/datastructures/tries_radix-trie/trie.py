@@ -124,6 +124,9 @@ class Trie:
             that the key has been successfully deleted, the second one is
             True if the last link followed becomes a dangling empty branch
             and should be pruned.
+            Good for dynamic arrays with many calls to remove,
+            it'll remove dangling branches and free up unneccesary
+            memory for dangling branches.
         """
         if s == "":
             deleted = node.key_node
@@ -145,3 +148,87 @@ class Trie:
         if self.root == None:
             return (False, False)
         return self._remove_with_pruning(self.root, s)
+
+    def _insert_using_longest_prefix(self, s):
+        """
+            rewriting _insert by leveraging the Method longest_common_prefix
+
+            Method _insert_using_longest_prefix is a two step operation:
+            1. finding the longest prefix already in the trie.
+            2. create a new branch and add the string.
+        """
+        # we need to tune _longest_prefix method to also return the last node.
+        def _longest_prefix_with_node(node: Node, s, prefix):
+            if s == "":
+                if node.key_node:
+                    return prefix
+                else:
+                    return None
+            c, tail = s[0], s[1:]
+            if node._children[c] == None:
+                return prefix if node.key_node else None
+            else:
+                result = _longest_prefix_with_node(node._children[c], tail, prefix+c)
+                if result != None:
+                    return result
+                elif node.key_node:
+                    return prefix
+                else:
+                    return None
+        
+        p, last_node = _longest_prefix_with_node(self.root, s, "")
+        new_branch = s.removeprefix(p)
+        return self._add_new_branch(last_node, new_branch)
+
+    def _longest_prefix(self, node: Node, s, prefix):
+        """
+            Method _longest_prefix takes a trie node, the string key
+            to be searched, and a string with the path from root to node.
+            it returns the longest prefix of s stored in the trie.
+        """
+        if s == "":
+            if node.key_node:
+                return prefix
+            else:
+                return None
+
+        c, tail = s[0], s[1:]
+        if node._children[c] == None:
+            return prefix if node.key_node else None
+        else:
+            result = self._longest_prefix(node._children[c], tail, prefix+c)
+            if result != None:
+                return result
+            elif node.key_node:
+                return prefix
+            else:
+                return None
+
+    def longest_prefix(self, s):
+        return self._longest_prefix(self.root, s, "")
+
+    def key_starting_with(self, prefix: str):
+        """
+            Method key_starting_with takes a prefix string and
+            returns all the keys stored in the trie which starts
+            with that specific prefix.
+        """
+        node = self._search_node(self.root, prefix)
+        if node == None:
+            return []
+        return self._all_keys(self.node)
+
+    def _all_keys(self, node: Node, prefix):
+        """
+            Method _all_keys takes a trie node and the string
+            prefix corresponding to the path from the trie's root
+            to node. 
+            It returns the list of strings s(k)=prefix+suffix(k),
+            where suffix(k) is the k-th string contained in this subtree.
+        """
+        keys = []
+        if node.key_node:
+            keys.append(prefix)
+        for c in node._children.keys():
+            keys = keys + self._all_keys(node._children[c], prefix+c)
+        return keys
