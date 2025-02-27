@@ -56,3 +56,32 @@ when new edges are added.
 ----
 #### Radix Tries:
 
+- If, however, an intermediate node stores no key and only has one child, then it carries no relevant information; it's only a forced step in the path.
+*Radix tries* (aka radix trees, aka Patricia trees) are based on the idea that we can
+somehow *compress* the path that leads to this kind of nodes, that are called *pass-through* nodes.
+
+- As one of the main uses for tries is to implement
+text-based dictionaries, the touchstone will often be *hash tables*.
+
+- implementing spell-check with Tries: (**How would we suggest the correct version of a typo?**)
+    - Let's say that the word *w* we are checking has *m* characters, and we can accept suggestions differing by at most *k* characters from *w*: in other words, we want words whose
+    *Levenshtein distance* (also known as edit distance) is at most *k*.
+    - For each node N, we check the array holding the edit distances:
+        - If all distances in the array are greater than out maximum tolerance, then we
+        can stop; there's no need to traverse its subtree any further (because the dis-
+        tances can only grow).
+        - Otherwise, we keep track of the last edit distance (the one for the whole search
+        string), and if it's the best we have found so far, we pair it with current node's
+        key and store it.
+- **Burstsort** is a *cache-efficient* sort algorithm that works similarly to *MSD* (Most Signifi-
+cant Digit) radix sort. However, burstsort is cache-efficient and even faster than radix sort!
+They both have the same asymptotic running time, O(n * M), which is a theoretical
+lower bound for sorting n strings of length M, but burstsort creates results twice as fast
+by exploiting *locality of reference and better memory distribution*.
+
+- String prefixes are a key factor for this new data structure, which in turn allows
+us to efficiently perform queries to find strings with a common prefix or, vice
+versa, given a string find its longest prefix in the dataset.
+
+- From spell-checkers to bioinformatics, many applications and fields manipulat-
+ing strings can benefit from using tries.
