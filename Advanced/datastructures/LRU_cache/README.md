@@ -38,3 +38,13 @@ way.
      - Facebook API: Uses Graph API and has different authentication and response structures.
      - LinkedIn API: Uses REST with a different query structure.
 - Instead of writing custom logic for each API everywhere in your application, you create an *adapter* that translates requests/responses into a standard format.
+
+- **HTTP headers**: Ideally, all http responses should add `Cache-Control`, `Expires`, and `Last-Modified` headers to make sure the resources are taken from cache as much as possible.
+
+- HTTP standards allow the server (the provider of the
+content) to add headers to resources (web pages, but also images, files, and so on) to
+let the client (usually the browser) know when it is allowed to read a certain resource
+from cache, and also to let intermediate cache nodes know if and for how long the
+response provided by the server to an HTTP (`GET`, usually) call can be cached.
+
+- 

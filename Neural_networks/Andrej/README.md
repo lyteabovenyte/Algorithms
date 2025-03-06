@@ -1,1 +1,0 @@
-##### Building neural networks from scrach experimentation.
