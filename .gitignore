@@ -1,5 +1,15 @@
 math_test.md
 
+/data/*
+data
+/data*/
+data
+data/
+data*
+*/data/*
+*/data
+
+
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
