@@ -14,6 +14,12 @@ aclImdb
 aclImdb/
 /aclImdb/*
 
+venv3.9
+venv*/
+venv*
+venv3/
+venv*/*
+venv
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
