@@ -14,10 +14,13 @@ aclImdb
 aclImdb/
 /aclImdb/*
 
-venv3.9
+venv3.9/bin/
+venv3.9/share/
+/venv3.9/
+venv3.9/*
 venv*/
 venv*
-venv3/
+venv3*/
 venv*/*
 venv
 
