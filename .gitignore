@@ -14,7 +14,7 @@ aclImdb
 aclImdb/
 /aclImdb/*
 
-venv3.9/bin/
+./venv3.9/bin/
 venv3.9/share/
 /venv3.9/
 venv3.9/*
@@ -23,6 +23,7 @@ venv*
 venv3*/
 venv*/*
 venv
+./venv*/bin/*
 
 ### Python ###
 # Byte-compiled / optimized / DLL files
@@ -228,6 +229,16 @@ celerybeat.pid
 .venv
 env/
 venv/
+venv3.9.bak/
+venv3.9/
+*venv3.9/
+bin/
+*bin*
+bin/
+share/
+share
+*/share/*
+*/bin/*
 ENV/
 env.bak/
 venv.bak/
